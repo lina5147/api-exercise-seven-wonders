@@ -14,12 +14,18 @@ def get_location(search_term)
 
   response = HTTParty.get(BASE_URL, query: query_params)
 
-  location = {
-      search_term => {
-          :lat=>response[0]["lat"],
-          :lon=>response[0]["lon"]
-      }
-  }
+  if response.code == 200
+    location = {
+        search_term => {
+            :lat=>response[0]["lat"],
+            :lon=>response[0]["lon"]
+        }
+    }
+  else
+    puts "Request failed because #{response["reason"]}"
+    exit
+  end
+
 
   return location
 end
