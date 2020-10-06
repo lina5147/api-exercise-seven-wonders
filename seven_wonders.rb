@@ -6,6 +6,22 @@ LOCATION_IQ_KEY = "pk.f49de3560943b18f729b5630f89c3d91"
 
 def get_location(search_term)
 
+  query_params = {
+      key: LOCATION_IQ_KEY,
+      q: search_term,
+      format: 'json'
+  }
+
+  response = HTTParty.get(BASE_URL, query: query_params)
+
+  location = {
+      search_term => {
+          :lat=>response[0]["lat"],
+          :lon=>response[0]["lon"]
+      }
+  }
+
+  return location
 end
 
 def find_seven_wonders
