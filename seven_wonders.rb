@@ -1,8 +1,8 @@
 require 'httparty'
 require "awesome_print"
 
-BASE_URL = "THE BASE URL FOR THE API REQUEST"
-LOCATION_IQ_KEY = "YOUR API TOKEN"
+BASE_URL = "https://us1.locationiq.com/v1/search.php"
+LOCATION_IQ_KEY = "pk.f49de3560943b18f729b5630f89c3d91"
 
 def get_location(search_term)
 
@@ -15,6 +15,7 @@ def find_seven_wonders
   seven_wonders_locations = []
 
   seven_wonders.each do |wonder|
+    # sleep suspends the thread of execution for the amount of seconds being passes as parameter
     sleep(0.5)
     seven_wonders_locations << get_location(wonder)
   end
